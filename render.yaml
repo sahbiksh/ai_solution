@@ -1,0 +1,42 @@
+services:
+  # Backend Web Service
+  - type: web
+    name: ai-solutions-api
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false # Requires client setup in Render dashboard
+      - key: JWT_SECRET
+        generateValue: true # Generates a secure random key automatically
+      - key: FRONTEND_URL
+        value: https://ai-solutions.onrender.com # Change to custom domain if needed
+      - key: ADMIN_EMAIL
+        value: admin@ai-solutions.co.uk
+      - key: ADMIN_PASSWORD
+        sync: false # Set securely in Render dashboard
+      - key: RATE_LIMIT_WINDOW_MS
+        value: 900000
+      - key: RATE_LIMIT_MAX
+        value: 100
+
+  # Frontend Static Site
+  - type: web
+    name: ai-solutions-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: ai-solutions-api
+          type: web
+          property: host
+        value: https://ai-solutions-api.onrender.com/api # Falls back or maps automatically

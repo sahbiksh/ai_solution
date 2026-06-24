@@ -1,0 +1,45 @@
+{
+  "name": "ai-solutions-backend",
+  "version": "1.0.0",
+  "description": "AI-Solutions Customer Inquiry and Promotion API",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/utils/seed.js",
+    "test": "jest --coverage --detectOpenHandles",
+    "test:integration": "jest --testPathPattern=integration --detectOpenHandles"
+  },
+  "keywords": ["ai-solutions", "express", "mongodb"],
+  "author": "AI-Solutions",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.14",
+    "pdfkit": "^0.15.0",
+    "xss-clean": "^0.1.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.0.0",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "testMatch": ["**/tests/**/*.test.js"]
+  }
+}
